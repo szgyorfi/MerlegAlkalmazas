@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mérleg Alkalmazás</title>
+	<link rel="icon" href="img/favicon.ico" />
+	<link rel="stylesheet" href="themes/merleg.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+	<link rel="stylesheet" href="themes/app.css" />
+</head>
+<body>
+	<!-- main Page -->
+	<div id="st" data-role="page" data-theme="a" data-quicklinks="true">
+		<div data-role="header" data-position="fixed">
+			<a href="#men" data-icon="bars" data-iconpos="notext" data-role="button" class="ui-btn-left"></a>
+			<h1>Mérleg Alkalmazás</h1>
+			<a href="#about" data-icon="info" data-iconpos="notext" data-role="button" class="ui-btn-right"></a>
+		</div>
+		<div role="main" class="ui-content jqm-content jqm-fullwidth" id='stMain'>
+        <div id="content">
+				<h1>Összesítés</h1>
+					<div class="periods" data-role="controlgroup" data-type="horizontal">
+							<a href="" id="balanceprevp" data-id="" class="ui-mini ui-btn ui-icon-arrow-l ui-btn-icon-left"></a>
+							<a href="" id="balanceactualp" data-id="" class="ui-mini ui-btn ui-btn-active ui-state-persist"></a>
+							<a href="" id="balancenextp" data-id="" class="ui-mini ui-btn ui-icon-arrow-r ui-btn-icon-right"></a>
+					</div>
+					<div id="main">
+						
+					</div>
+				</div>
+		</div>
+		<div data-role="footer" data-position="fixed" id="mainFooter">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#kiadasok" data-theme="b" data-icon="minus" data-transition="slide" data-direction="reverse">Kiadások</a></li>
+					<li><a href="#bevetelek" data-theme="c" data-icon="plus" data-transition="slide">Bevételek</a></li>
+					<!--<li><a href="#merleg" data-theme="b" data-icon="info" data-transition="slide">Mérleg</a></li>-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- expense Page -->
+	<div id="kiadasok" data-role="page" data-theme="b" data-quicklinks="true">
+		<div data-role="header" data-position="fixed">
+			<a href="#kiadasokHelp" data-icon="info" data-iconpos="notext" data-role="button" class="ui-btn-left"></a>
+			<h1>Kiadások</h1>
+			<a href="#st" data-icon="arrow-r" data-iconpos="notext" data-role="button" data-transition="slide" class="ui-btn-right"></a>
+		</div>
+		<div role="main" class="ui-content jqm-content jqm-fullwidth" id="expMain">
+		
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#expense" id="newExp" data-theme="b" data-icon="plus">ÚJ</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- income Page -->
+	<div id="bevetelek" data-role="page" data-theme="c" data-quicklinks="true">
+		<div data-role="header" data-position="fixed">
+			<a href="#st" data-icon="arrow-l" data-iconpos="notext" data-role="button" data-direction="reverse"  data-transition="slide" class="ui-btn-left"></a>
+			<h1>Bevételek</h1>
+			<a href="#bevetelekHelp" data-icon="info" data-iconpos="notext" data-role="button" class="ui-btn-right"></a>
+		</div>
+		<div role="main" class="ui-content jqm-content jqm-fullwidth" id="incMain">
+
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#incomes" id="newInc" data-theme="c" data-icon="plus">ÚJ</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- balance Page -->
+	<div id="merleg" data-role="page" data-theme="a" data-quicklinks="true">
+		<div data-role="header" data-position="fixed">
+			<a href="#st" data-icon="arrow-l" data-iconpos="notext" data-role="button" data-direction="reverse"  data-transition="slide" class="ui-btn-left"></a>
+			<h1>Főkönyvi státuszok</h1>
+		</div>
+		<div role="main" class="ui-content jqm-content jqm-fullwidth" id="merlegMain">
+
+		</div>
+	</div>
+	<!-- accounts Page -->
+	<div id="accounts" data-role="page" data-theme="a" data-quicklinks="true">
+		<div data-role="header" data-position="fixed">
+			<a href="#st" data-icon="home" data-iconpos="notext" data-role="button" data-direction="reverse"  data-transition="flip" class="ui-btn-left"></a>
+			<h1>Főkönyvek</h1>
+		</div>
+		<div role="main" class="ui-content jqm-content jqm-fullwidth" id="accountsMain">
+
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#accounts" id="newAcc" data-theme="a" data-icon="plus">ÚJ</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- helpers Page -->
+	<div id="helpers" data-role="page" data-theme="a" data-quicklinks="true">
+		<div data-role="header" data-position="fixed">
+			<a href="#st" data-icon="home" data-iconpos="notext" data-role="button" data-direction="reverse"  data-transition="flip" class="ui-btn-left">Vissza</a>
+			<h1>Kategóriák</h1>
+		</div>
+		<div role="main" class="ui-content jqm-content jqm-fullwidth" id="helpersMain">
+
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#helpers" id="newHpr" data-theme="a" data-icon="plus">ÚJ</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- forecast Page -->
+	<div id="forecast" data-role="page" data-theme="a" data-quicklinks="true">
+		<div data-role="header" data-position="fixed">
+			<a href="#st" data-icon="home" data-iconpos="notext" data-role="button" data-direction="reverse"  data-transition="flip" class="ui-btn-left">Vissza</a>
+			<h1>Előrejelzések</h1>
+		</div>
+		<div role="main" class="ui-content jqm-content jqm-fullwidth" id="forecastMain">
+			<div class="periods" data-role="controlgroup" data-type="horizontal">
+				<a href="" id="prevp" data-id="" class="ui-mini ui-btn ui-icon-arrow-l ui-btn-icon-left"></a>
+				<a href="" id="actualp" data-id="" class="ui-mini ui-btn ui-btn-active ui-state-persist"></a>
+				<a href="" id="nextp" data-id="" class="ui-mini ui-btn ui-icon-arrow-r ui-btn-icon-right"></a>
+			</div>
+			<div id="forecasts"></div>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#forecast" id="newFor" data-theme="a" data-icon="plus">ÚJ</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Menu -->
+	<div data-role="panel" id="men" data-position="left" data-display="reveal" data-theme="a">
+
+				<a href="#accounts" data-transition="flip" class="ui-btn ui-icon-bars ui-btn-icon-left">Főkönyvek</a>
+				<a href="#helpers" data-transition="flip" class="ui-btn ui-icon-bullets ui-btn-icon-left">Kategóriák</a>
+				<a href="#forecast" data-transition="flip" class="ui-btn ui-icon-forward ui-btn-icon-left">Előrejelzések</a>
+
+	</div>
+	<!-- About -->
+	<div data-role="panel" id="about" data-position="right" data-display="reveal" data-theme="a">
+				
+        <img src="img/scales-48.png">
+				<h3>Mérleg Alkalmazás</h3>
+        <p>Az alkalmazás egy kis családi költségvetés könyvelését teszi lehetővé. File alapú adatbázisával gyors és biztonságos információtárolásra alkalmas. Jelen verzió csak a telepített készüléken teszi elérhetővé az adatokat. [Fejlesztés alatt van a Cloud-ban elérhető adatbázis megoldás is].</p>
+				<h4>Hogyan induljak?</h4>
+				<p>Az alkalmazás főkönyveket kezel. Ezek megadása szükséges. A menüben a <strong>Főkönyvek</strong> gombra kattintva a megfelelő felületre vezérel az alkalmazás, ahol az oldal alján lévő <strong>ÚJ</strong> gomb használatával lehet létrehozni főkönyveket.</p>
+				<p>A főkönyvekhez kategóriák tartoznak az alkalmazás adatbázisának logikája szerint. Ezek felvételét, szerkesztését és esetleges törlését a menüben a <strong>Kategóriák</strong> gombra kattintva lehet elérni. Az <strong>ÚJ</strong> gomb használatával lehet megkezdeni a kategória hozzáadását. A kategóriák létrehozásával az alkalmazás automatikusan létrehoz egy <strong>Előrejelzést</strong> az aktuális hónapra, <strong>0</strong> összeggel.</p>
+				<p>Az előrejelzések szerekesztését a menüből az <strong>Előrejelzések</strong> gombbal lehet elérni. Amennyiben minden főkönyvünk és kategóriánk már megvan, úgy az aktuális hónap előrejelzése jelenik meg (mind <strong>0</strong> összeggel). Az első előrejelzésünket egyenként kell frissíteni, a listaelemek melletti kis gomb megnyomásával. Amennyiben új havi előrejelzést szeretnénk megadni a már meglévő adatok alapján, úgy az oldal alján található <strong>ÚJ</strong> gombbal lehet az összes kategóriához tartozó előrejelzést megadni.</p>
+				<p>Kiadásokat és Bevételeket az főoldal alján megjelenő gombokkal lehet elérni, és könyvelni (mindkettő esetében a segítség az információs gombra kattintva érhető el).</p>
+				<h4>Mi van a főoldalon?</h4>
+				<p>A főoldalon a bejegyzett főkönyvekhez tartozó aktuális előrejelzést és aktuális költéseket / bevételeket lehet megtekinteni. Az első sor egy összegző, a további sorok pedig a különböző főkönyvek és alá tartozó kategóriák megfelelő összegeit mutatják. Az oldal tetején lévő navigáló gombok segítségével lehet a főkönyvi periódusok között váltani.</p>
+				<hr>
+				<h4>Köszönjük...</h4>
+				<p>...hogy letöltötte alkalmazásunkat, használja egészséggel és hasznosan.</p>
+				<p style='text-align: right'>Üdvözlettel,<br />Györfi-Baloghék</p>
+        <a href="#" data-rel="close" class="ui-btn ui-mini ui-shadow ui-btn-a ui-corner-all ui-icon-arrow-l ui-btn-icon-left ui-btn-inline">Vissza</a>
+
+	</div>
+	<!-- Expense help -->
+	<div data-role="panel" id="kiadasokHelp" data-position="left" data-display="reveal" data-theme="b">
+
+        <img src="img/scales-48.png">
+				<h3>Kiadások</h3>
+        <p>A kiadások könyvelésére alkalmas felület.</p>
+				<span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-edit ui-btn-icon-right ui-btn-inline">ÚJ</span>
+				<p>Az oldal alján látható gombbal lehet új kiadási tételt felvenni a listába. A gombra kattintva megjelenik a főkönyvválasztó lista. Ennek változtatása után a kategória és a megfelelő összeg megadása után a <span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-check ui-btn-a ui-btn-icon-right ui-btn-inline">Mentés</span> gombra kattintva az alkalmazás tárolja az új bejegyzést, és visszanavigál a <strong>Kiadások</strong> listájához.</p>
+				<span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-edit ui-btn-icon-right ui-btn-inline">Szerkesztés</span>
+        <p>A listában megjelenített bejegyzések mellett szereplő gombbal lehet az adott sor adatait szerkeszteni. Az adatok megváltoztatása után a <span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-check ui-btn-a ui-btn-icon-right ui-btn-inline">Frissítés</span> gombra kattintva az alaklmazás elmenti a változtatásokat, és visszanavigál a <strong>Kiadások</strong> listájához.</p>
+				<span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-right ui-btn-inline">Törlés</span>
+				<p>A szerkesztés megkezdésekor a módosítható adatok alatt megjelenik a <strong>Törlés</strong> gomb, amelynek megnyomásával az adott bejegyzést az alkalmazás kitörli az adatbázisból, és visszanavigál a <strong>Kiadások</strong> listájához.</p>
+        <p style='text-align:right'><a href="#" data-rel="close" class="ui-btn ui-mini ui-shadow ui-btn-a ui-corner-all ui-icon-arrow-r ui-btn-icon-right ui-btn-inline">Vissza</a></p>
+
+	</div>	
+	<!-- Income help -->
+	<div data-role="panel" id="bevetelekHelp" data-position="right" data-display="reveal" data-theme="c">
+				
+        <img src="img/scales-48.png">
+				<h3>Bevételek</h3>
+        <p>A bevételek könyvelésére alkalmas felület.</p>
+				<span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-edit ui-btn-icon-right ui-btn-inline">ÚJ</span>
+				<p>Az oldal alján látható gombbal lehet új bevételi tételt felvenni a listába. A gombra kattintva megjelenik a főkönyvválasztó lista. Ennek változtatása után a kategória és a megfelelő összeg megadása után a <span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-check ui-btn-a ui-btn-icon-right ui-btn-inline">Mentés</span> gombra kattintva az alkalmazás tárolja az új bejegyzést, és visszanavigál a <strong>Bevételek</strong> listájához.</p>
+				<span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-edit ui-btn-icon-right ui-btn-inline">Szerkesztés</span>
+        <p>A listában megjelenített bejegyzések mellett szereplő gombbal lehet az adott sor adatait szerkeszteni. Az adatok megváltoztatása után a <span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-check ui-btn-a ui-btn-icon-right ui-btn-inline">Frissítés</span> gombra kattintva az alaklmazás elmenti a változtatásokat, és visszanavigál a <strong>Bevételek</strong> listájához.</p>
+				<span class="ui-btn ui-mini ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-right ui-btn-inline">Törlés</span>
+				<p>A szerkesztés megkezdésekor a módosítható adatok alatt megjelenik a <strong>Törlés</strong> gomb, amelynek megnyomásával az adott bejegyzést az alkalmazás kitörli az adatbázisból, és visszanavigál a <strong>Bevételek</strong> listájához.</p>
+        <a href="#" data-rel="close" class="ui-btn ui-mini ui-shadow ui-btn-a ui-corner-all ui-icon-arrow-l ui-btn-icon-left ui-btn-inline">Vissza</a>
+
+	</div>
+	
+	<script src="themes/jquery-1.11.1.min.js"></script>
+	<script src="themes/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+
+
+		$(function() {
+			$( "body>[data-role='panel']" ).panel();
+			$('#bevetelek h1, #merleg h1, #kiadasok h1, #forecast h1, #accounts h1, #helpers h1').on('click', function(){
+				location.reload();
+			});
+			
+			// Main init
+				var d = new Date();
+				getBalance(d.getFullYear() + "" + ((d.getMonth()+1)<10?"0"+(d.getMonth()+1):(d.getMonth()+1)));
+				$('#st .periods a').on('click', function(){getBalance($(this).attr("data-id"));});
+				
+			function getBalance(p){
+				$('#main').empty();
+				var d = new Date(p.substring(0,4) +"/"+p.substring(4,6)+"/01 00:00:00");
+				var p = d.getFullYear() + "" + ((d.getMonth()+1)<10?"0"+(d.getMonth()+1):(d.getMonth()+1));
+				var dprev = new Date(new Date(d).setMonth(d.getMonth()-1));
+				var dnext = new Date(new Date(d).setMonth(d.getMonth()+1));
+				var prevp = dprev.getFullYear() + "" + ((dprev.getMonth()+1)<10?"0"+(dprev.getMonth()+1):(dprev.getMonth()+1));
+				var nextp = dnext.getFullYear() + "" + ((dnext.getMonth()+1)<10?"0"+(dnext.getMonth()+1):(dnext.getMonth()+1));
+				$('#balanceprevp').html(prevp).attr("data-id", prevp);
+				$('#balanceactualp').html(p).attr("data-id", p);
+				$('#balancenextp').html(nextp).attr("data-id",nextp);
+				$('#st .periods').show();
+				$.ajax({
+					url: 'api/index.php',
+					type: 'GET',
+					data: {balance: "balance", period: p}
+				}).done(function(d){
+					$('#main').empty().append(d).trigger('create');
+					$
+				}).fail(function(d){
+					$('#main').append(d);
+				});
+			}
+			
+			// Előrejelzések szerkesztése 
+			function getForecast(p){
+				$('#forecasts').empty();
+				var d = new Date(p.substring(0,4) +"/"+p.substring(4,6)+"/01 00:00:00");
+				var p = d.getFullYear() + "" + ((d.getMonth()+1)<10?"0"+(d.getMonth()+1):(d.getMonth()+1));
+				var dprev = new Date(new Date(d).setMonth(d.getMonth()-1));
+				var dnext = new Date(new Date(d).setMonth(d.getMonth()+1));
+				var prevp = dprev.getFullYear() + "" + ((dprev.getMonth()+1)<10?"0"+(dprev.getMonth()+1):(dprev.getMonth()+1));
+				var nextp = dnext.getFullYear() + "" + ((dnext.getMonth()+1)<10?"0"+(dnext.getMonth()+1):(dnext.getMonth()+1));
+				$('#prevp').html(prevp).attr("data-id", prevp);
+				$('#actualp').html(p).attr("data-id", p);
+				$('#nextp').html(nextp).attr("data-id",nextp);
+				$('#forecast .periods').show();
+				$.ajax({
+					url: 'api/index.php',
+					type: 'GET',
+					data: {forecast: 'forecast', period: p}
+				}).done(function(d){
+					$('#forecastMain #forecasts').empty().append(d).trigger('create');
+					$('.edit').on('click', function(){
+						$('#newFor').html('Frissítés').removeClass('ui-icon-plus').addClass('ui-icon-check');
+						var k = $(this).attr("data-id").split(";");
+						$('#forecasts').append('<p>A kiadások tervezése során az összeget negatívként kell megadni!</p>');
+						$('#forecasts').append('<label><strong>' + k[1] + ' - ' + k[2] + ':</strong></label><input type="number" name="amount" id="amount" value="' + k[3] + '"><input type="hidden" id="id" value="' + k[0] + '"> ').trigger('create');
+						$('#forecast .periods').hide();
+						$('#forecasts ul').remove();
+					});
+				}).fail(function(d){
+					$('#forecastMain').append(d);
+				});
+			}
+			
+			$(document).on('pageinit', '#forecast', function(e){
+				var d = new Date();
+				var p = d.getFullYear() + "" + ((d.getMonth()+1)<10?"0"+(d.getMonth()+1):(d.getMonth()+1));
+				getForecast(p);
+				$('#forecast .periods a').on('click', function(){getForecast($(this).attr("data-id"));});
+			});
+			
+			$('#newFor').on('click', function(){
+				if($(this).html() == "ÚJ"){
+					$('#forecasts').append('<p>Amennyiben a megadott Periódusra (év hónap) már van feltöltve Előrejelzés, úgy ez frissítésre kerül, amennyiben nincsen, úgy bejegyzésre kerülnek az új adatok!</p>');
+					$('#forecasts').append('<label>Periódus (év hónap)</label><select name="period" id="period"></select>');
+					p = $('#actualp').html();
+					var d = new Date(p.substring(0,4) +"/"+p.substring(4,6)+"/01 00:00:00");
+					for(i=0;i<12;i++){
+						var dnext = new Date(new Date(d).setMonth(d.getMonth()+i+1));
+						var nextp = dnext.getFullYear() + "" + ((dnext.getMonth()+1)<10?"0"+(dnext.getMonth()+1):(dnext.getMonth()+1));
+						$("#period").append("<option value='" + nextp + "'>" + nextp + "</option>");
+					}
+					$(this).html('Mentés').removeClass('ui-icon-plus').addClass('ui-icon-check');
+					$('#forecasts ul').children('li').each(function(){
+						var el = $(this).children('.edit');
+						var t = el.attr("data-id").substring(el.attr("data-id").indexOf(";")+1).split(";");
+						$('#forecasts').append('<label>' + t[1] + ':</label><input class="myinput" type="text" value="' + t[2] + '" data-id="' + t[0] + ';' + t[1] + '">').trigger('create');
+					});
+					$('#forecast .periods').hide();
+					$('#forecasts ul').remove();
+				}
+				else if($(this).html() == "Frissítés"){
+					if($('#amount').val() == ''){
+						$('#forecastMain').append('<div class="error">Az összeg megadása kötelező!</div>');
+						setTimeout(function(){$('#forecastMain .error').remove();}, 5000);
+						return false;
+					}
+					else {
+						$(this).html('Új').removeClass('ui-icon-check').addClass('ui-icon-plus');
+						$.ajax({
+							url: 'api/index.php',
+							type: 'POST',
+							data: {movement: 'editforecast', id: $('#id').val(), amount: $('#amount').val()}
+						}).done(function(d){
+							$('#forecastMain').empty().append(d).trigger('create');
+						}).fail(function(d){
+							$('#forecastMain').append(d);
+						});
+					}
+				}
+				else {
+					$(this).html('Új').removeClass('ui-icon-check').addClass('ui-icon-plus');
+					var postData = [];
+					$('#forecasts .myinput').each(function(){
+						var pData = $(this).attr("data-id").split(";");
+						pData.push($(this).val());
+						pData.push($('#period').val());
+						postData.push(pData);
+					});
+					$.ajax({
+						url: 'api/index.php',
+						type: 'POST',
+						data: {movement: 'setforecast', data: JSON.stringify(postData)}
+					}).done(function(d){
+						$('#forecastMain').empty().append(d).trigger('create');
+					}).fail(function(d){
+						$('#forecastMain').empty().append(d);
+							//alert(JSON.stringify(d));
+					});
+				}
+			});
+			
+			// Segédtáblák szerkesztése
+			$(document).on('pageinit', '#helpers', function(e){
+				$.ajax({
+					url: 'api/index.php',
+					type: 'GET',
+					data: {helper: 'helper'}
+				}).done(function(d){
+					$('#helpersMain').empty().append(d).trigger('create');
+						$('.edit').on('click', function(){
+							$('#newHpr').html('Frissítés').removeClass('ui-icon-plus').addClass('ui-icon-check');
+							$.ajax({
+								url: 'api/index.php',
+								type: 'GET', 
+								data: {helper: $(this).attr('data-id')}
+							}).done(function(d){
+								$('#helpersMain').empty().append(d).trigger('create');
+									$('#delete').on('click', function(){
+										$.ajax({
+											url: 'api/index.php',
+											type: 'POST',
+											data: {movement:"deletehelper", id: $('#id').val()}
+										}).done(function(d){
+											$('#helpersMain').empty().append(d);
+										}).fail(function(d){
+											$('#helpersMain').empty().append(d);
+										});
+									});
+							}).fail(function(d){
+								$('#helpersMain').append(d);
+							});
+						});
+				}).fail(function(d){
+					$('#helpersMain').append(d);
+				});
+			});
+			
+			$('#newHpr').on('click', function(){
+				if($(this).html() == "ÚJ"){
+					$(this).html("Mentés").removeClass('ui-icon-plus').addClass('ui-icon-check');
+					$.ajax({
+						url: 'api/index.php',
+						type: 'GET',
+						data: {accounts: 'accounts', type: 'all'}
+					}).done(function(d){
+						$('#helpersMain').empty().append(d).trigger('create');
+						$('#helpersMain').append('<input name="description" id="description" type="text" placeholder="Megnevezés">').trigger('create');
+					}).fail(function(d){
+						$('#helpersMain').append(d);
+					});
+				}
+				else if($(this).html() == "Frissítés"){
+					if($('#acc').val() == 'Válassz főkönyvet' || $('#description').val() == ''){
+						$('#helpersMain').append('<div class="error">Minden mező kitöltése kötelező!</div>');
+						setTimeout(function(){$('#helpersMain .error').remove();}, 5000);
+						return false;
+					}
+					else {
+						$('#newHpr').html("ÚJ").removeClass('ui-icon-check').addClass('ui-icon-plus');
+						$.ajax({
+							url: 'api/index.php',
+							type: 'POST', 
+							data: {movement: "edithelper", id: $('#id').val(), accid: $('#acc').val(), description: $('#description').val()}
+						}).done(function(d){
+							$('#helpersMain').html(d);
+						}).fail(function(d){
+							$('#helpersMain').html(d);
+						});
+					}
+				}
+				else {
+					if($('#acc').val() == 'Válassz főkönyvet:' || $('#description').val() == ''){
+						$('#helpersMain').append('<div class="error">Minden mező kitöltése kötelező!</div>');
+						setTimeout(function(){$('#helpersMain .error').remove();}, 5000);
+						return false;
+					}
+					else {
+						$('#newHpr').html("ÚJ").removeClass('ui-icon-check').addClass('ui-icon-plus');
+						$.ajax({
+							url: 'api/index.php',
+							type: 'POST', 
+							data: {movement: "newhelper", accid: $('#acc').val(), description: $('#description').val()}
+						}).done(function(d){
+							$('#helpersMain').html(d);
+						}).fail(function(d){
+							$('#helpersMain').html(d);
+						});
+					}
+				}
+			});
+			
+			// Főkönyvek szerkesztése
+			$(document).on('pageinit', '#accounts', function(e){
+				$.ajax({
+					url: 'api/index.php',
+					type: 'GET', 
+					data: {account: "account"}
+				}).done(function(d){
+					$('#accountsMain').append(d).trigger('create');
+						$('.edit').on('click', function(){
+							$('#newAcc').html('Frissítés').removeClass('ui-icon-plus').addClass('ui-icon-check');
+							$.ajax({
+								url: 'api/index.php',
+								type: 'GET', 
+								data: {account: $(this).attr('data-id')}
+							}).done(function(d){
+								$('#accountsMain').empty().append(d).trigger('create');
+									$('#delete').on('click', function(){
+										$.ajax({
+											url: 'api/index.php',
+											type: 'POST',
+											data: {movement:"deleteaccount", id: $('#accid').val()}
+										}).done(function(d){
+											$('#accountsMain').empty().append(d);
+										}).fail(function(d){
+											$('#accountsMain').empty().append(d);
+										});
+									});
+							}).fail(function(d){
+								$('#accountsMain').append(d);
+							});
+						});
+				}).fail(function(d){
+					$('#accountsMain').append(d);
+				});
+			});
+			
+			$('#newAcc').on('click', function(){
+				if($(this).html() == "ÚJ"){
+					$('#newAcc').html('Mentés').removeClass('ui-icon-plus').addClass('ui-icon-check');
+					$('#accountsMain').empty().html("<label for='accid'>Szám:</label><input type='text' name='accid' id='accid' value='' placeholder='0000'><label for='accname'>Megnevezés:</label><input type='text' name='accname' id='accname' value='' placeholder='Megnevezés'>").trigger('create');
+				}
+				else if($(this).html() == "Frissítés"){
+					if($('#accid').val() == '' || $('#accname').val() == ''){
+						$('#accountsMain').append('<div class="error">Minden mező kitöltése kötelező!</div>');
+						setTimeout(function(){$('#accountsMain .error').remove();}, 5000);
+						return false;
+					}
+					else {
+						$('#newAcc').html('ÚJ').removeClass('ui-icon-check').addClass('ui-icon-plus');
+						$.ajax({
+							url: 'api/index.php',
+							type: 'POST', 
+							data: {movement: "editaccount", accid: $('#accid').val(), accname: $('#accname').val()}
+						}).done(function(d){
+							$('#accountsMain').html(d);
+						}).fail(function(d){
+							$('#accountsMain').html(d);
+						});
+					}
+				}
+				else {
+					if($('#accid').val() == '' || $('#accname').val() == ''){
+						$('#accountsMain').append('<div class="error">Minden mező kitöltése kötelező!</div>');
+						setTimeout(function(){$('#accountsMain .error').remove();}, 5000);
+						return false;
+					}
+					else {
+						$('#newAcc').html('ÚJ').removeClass('ui-icon-check').addClass('ui-icon-plus');
+						$.ajax({
+							url: 'api/index.php',
+							type: 'POST', 
+							data: {movement: "newaccount", accid: $('#accid').val(), accname: $('#accname').val()}
+						}).done(function(d){
+							$('#accountsMain').html(d);
+						}).fail(function(d){
+							$('#accountsMain').html(d);
+						});
+					}
+				}
+			});
+			
+			// Bevételek
+			$(document).on('pageinit', '#bevetelek', function(e){
+				$.ajax({
+					url: 'api/index.php', 
+					type: 'GET',
+					data: {incomes: "incomes"}
+				}).done(function(d){
+					$('#incMain').append(d).trigger('create');
+						$('.edit').on('click', function(){
+							$('#newInc').html("Frissítés").removeClass('ui-icon-plus').addClass('ui-icon-check');
+							$.ajax({
+							url: 'api/index.php', 
+							type: 'GET', 
+							data: {incomes: $(this).attr("data-id")}
+							}).done(function(d){
+								$('#incMain').empty().append(d).trigger('create');
+									$('#delete').on('click', function(){
+										$.ajax({
+											url: 'api/index.php',
+											type: 'POST',
+											data: {movement:"deleteincome", id: $('#id').val()}
+										}).done(function(d){
+											$('#incMain').empty().append(d);
+										}).fail(function(d){
+											$('#incMain').empty().append(d);
+										});
+									});
+									$('#acc').on('change', function(){
+										var am = $('#amount').val();
+										$('#helpers').remove();
+										$('label').remove();
+										$('#amount').remove();
+										var t = $(this);
+										$.ajax({
+											url: 'api/index.php', 
+											type: 'GET', 
+											data: {accounts: $(this).val(), type: "income"}
+										}).done(function(d){
+											$('#incMain').append(d).trigger('create');
+											$('#incMain').append("<label for='amount'>Összeg:</label><input name='amount' id='amount' type='number' placeholder='0' value='" + am + "'>").trigger('create');
+										}).fail(function(d){
+											$('#incMain').append(d);
+										});
+									});
+							}).fail(function(d){
+								$('#incMain').empty().append(d);
+							});
+						});
+				}).fail(function(d){
+					$('#incMain').append(d);
+				});
+			});
+		
+			$('#newInc').on('click', function(){
+				if($(this).html() == "ÚJ"){
+					$.ajax({
+						url: 'api/index.php', 
+						type: 'GET', 
+						data: {accounts: "accounts", type: "income"}
+					}).done(function(d){
+						$('#incMain').empty().append(d).trigger('create');
+						$('#acc').on('change', function(){
+							$.ajax({
+								url: 'api/index.php', 
+								type: 'GET', 
+								data: {accounts: $(this).val()}
+							}).done(function(d){
+								$('#incMain').append(d).trigger('create');
+								$('#incMain').append("<label for='amount'>Összeg:</label><input name='amount' id='amount' type='number' placeholder='0' value=''>").trigger('create');
+							}).fail(function(d){
+								$('#incMain').append(d);
+							});
+						});
+					});
+					$(this).html("Mentés").removeClass('ui-icon-plus').addClass('ui-icon-check');
+				}
+				else if ($(this).html() == "Frissítés"){
+					if($('#acc').val() == 'Válassz főkönyvet:' || $('#helpers').val() == 'Válassz kategóriát' || $('#amount').val() == ''){
+						$('#incMain').append('<div class="error">Minden mező kitöltése kötelező!</div>');
+						setTimeout(function(){$('#incMain .error').remove();}, 5000);
+						return false;
+					}
+					else 
+					{
+						$(this).html("ÚJ").removeClass('ui-icon-check').addClass('ui-icon-plus');
+						$.ajax({
+							url: 'api/index.php',
+							type: 'POST', 
+							data: {movement: "editincome", id: $('#id').val(), accid: $('#acc').val(), description: $('#helpers').val(), amount:$('#amount').val()}
+						}).done(function(d){
+							$('#incMain').html(d);
+						}).fail(function(d){
+							$('#incMain').html(d);
+						});
+					}
+				}
+				else {
+					if($('#acc').val() == 'Válassz főkönyvet:' || $('#helpers').val() == 'Válassz kategóriát:' || $('#amount').val() == ''){
+						$('#incMain').append('<div class="error">Minden mező kitöltése kötelező!</div>');
+						setTimeout(function(){$('#incMain .error').remove();}, 5000);
+						return false;
+					}
+					else 
+					{
+						$(this).html("ÚJ").removeClass('ui-icon-check').addClass('ui-icon-plus');
+						$.ajax({
+							url: 'api/index.php',
+							type: 'POST', 
+							data: {movement: "newincome", accid: $('#acc').val(), description: $('#helpers').val(), amount:$('#amount').val()}
+						}).done(function(d){
+							$('#incMain').html(d);
+						}).fail(function(d){
+							$('#incMain').html(d);
+						});
+					}
+				}
+			});
+			
+			// Kiadások
+			$(document).on('pageinit', '#kiadasok', function(e){
+				$.ajax({
+					url: 'api/index.php', 
+					type: 'GET',
+					data: {expenses: "expenses"}
+				}).done(function(d){
+					$('#expMain').append(d).trigger('create');
+						$('.edit').on('click', function(){
+							$('#newExp').html("Frissítés").removeClass('ui-icon-plus').addClass('ui-icon-check');
+							$.ajax({
+							url: 'api/index.php', 
+							type: 'GET', 
+							data: {expenses: $(this).attr("data-id")}
+							}).done(function(d){
+								$('#expMain').empty().append(d).trigger('create');
+									$('#delete').on('click', function(){
+										$.ajax({
+											url: 'api/index.php',
+											type: 'POST',
+											data: {movement:"deleteexpense", id: $('#id').val()}
+										}).done(function(d){
+											$('#incMain').empty().append(d);
+										}).fail(function(d){
+											$('#incMain').empty().append(d);
+										});
+									});
+									$('#acc').on('change', function(){
+										var am = $('#amount').val();
+										$('#helpers').remove();
+										$('label').remove();
+										$('#amount').remove();
+										var t = $(this);
+										$.ajax({
+											url: 'api/index.php', 
+											type: 'GET', 
+											data: {accounts: $(this).val(), type: "expense"}
+										}).done(function(d){
+											$('#expMain').append(d).trigger('create');
+											$('#expMain').append("<label for='amount'>Összeg:</label><input name='amount' id='amount' type='number' placeholder='0' value='" + am + "'>").trigger('create');
+										}).fail(function(d){
+											$('#expMain').append(d);
+										});
+									});
+							}).fail(function(d){
+								$('#expMain').empty().append(d);
+							});
+						});
+				}).fail(function(d){
+					$('#expMain').append(d);
+				});
+			});
+			
+			$('#newExp').on('click', function(){
+				if($(this).html() == "ÚJ"){
+					$.ajax({
+						url: 'api/index.php', 
+						type: 'GET', 
+						data: {accounts: "accounts", type: "expense"}
+					}).done(function(d){
+						$('#expMain').empty().append(d).trigger('create');
+						$('#acc').on('change', function(){
+							$.ajax({
+								url: 'api/index.php', 
+								type: 'GET', 
+								data: {accounts: $(this).val()}
+							}).done(function(d){
+								$('#expMain').append(d).trigger('create');
+								$('#expMain').append("<label for='amount'>Összeg:</label><input name='amount' id='amount' type='number' placeholder='0' value=''>").trigger('create');
+							}).fail(function(d){
+								$('#expMain').append(d);
+							});
+						});
+					});
+					$(this).html("Mentés").removeClass('ui-icon-plus').addClass('ui-icon-check');
+				}
+				else if ($(this).html() == "Frissítés"){
+					if($('#acc').val() == 'Válassz főkönyvet:' || $('#helpers').val() == 'Válassz kategóriát:' || $('#amount').val() == ''){
+						$('#expMain').append('<div class="error">Minden mező kitöltése kötelező!</div>');
+						setTimeout(function(){$('#expMain .error').remove();}, 5000);
+						return false;
+					}
+					else 
+					{
+						$(this).html("ÚJ").removeClass('ui-icon-check').addClass('ui-icon-plus');
+						$.ajax({
+							url: 'api/index.php',
+							type: 'POST', 
+							data: {movement: "editexpense", id: $('#id').val(), accid: $('#acc').val(), description: $('#helpers').val(), amount:$('#amount').val()}
+						}).done(function(d){
+							$('#expMain').html(d);
+						}).fail(function(d){
+							$('#expMain').html(d);
+						});
+					}
+				}
+				else {
+					if($('#acc').val() == 'Válassz főkönyvet:' || $('#helpers').val() == 'Válassz kategóriát:' || $('#amount').val() == ''){
+						$('#expMain').append('<div class="error">Minden mező kitöltése kötelező!</div>');
+						setTimeout(function(){$('#expMain .error').remove();}, 5000);
+						return false;
+					}
+					else 
+					{
+						$(this).html("ÚJ").removeClass('ui-icon-check').addClass('ui-icon-plus');
+						$.ajax({
+							url: 'api/index.php',
+							type: 'POST', 
+							data: {movement: "newexpense", accid: $('#acc').val(), description: $('#helpers').val(), amount:$('#amount').val()}
+						}).done(function(d){
+							$('#expMain').html(d);
+						}).fail(function(d){
+							$('#expMain').html(d);
+						});
+					}
+				}
+			});
+		
+		
+		});
+	</script>
+	
+</body>
+</html>

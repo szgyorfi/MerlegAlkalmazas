@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <widget xmlns = "http://www.w3.org/ns/widgets" xmlns:gap = "http://phonegap.com/ns/1.0" id = "it.venerons.APPLICATION"	version = "1.0.0"	versionCode = "1">
+
+    <name>Mérleg</name>
+
+    <description>
+        Kis családi költségvetés követő.
+    </description>
+
+    <author href="http://alkalmazas.net" email="gyorfi-balogh@gmail.com">Györfi-Balogh Szabolcs</author>
+
+    <!-- ICONS -->
+        
+    <icon src="img/icon.png" /> <!-- default 512 pixels -->
+		<gap:splash src="img/splash.png" /> <!-- default 320x480 pixels -->
+		
+		<gap:platform name="android" />
+				
+		<preference name="phonegap-version" value="3.1.0" />
+    <preference name="orientation" value="default" />
+    <preference name="fullscreen" value="true" /> <!-- remove the upper bar on iOS and Android -->
+		
+		<access origin="*" />
+
+</widget>

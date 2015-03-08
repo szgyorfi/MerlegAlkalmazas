@@ -1,0 +1,61 @@
+img {
+	max-width: 24px; 
+	float: left;
+	margin: 10px;
+}
+#kiadasok h1 {
+	color: rgb(250,150,50);
+}
+#bevetelek h1 {
+	color: rgb(100,200,50);
+}
+#merleg h1 {
+	color: rgb(50,150,200);
+}
+#stMain h1 {
+	text-align: center;
+}
+.act {
+	color: rgb(50,150,250);
+}
+.fc {
+	color: rgb(150,150,150); 
+}
+.right {
+	text-align: right;
+	display: block;
+}
+.left {
+	text-align: left;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.trunc {
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.periods {
+	margin: 0 auto;
+	text-align: center;
+	min-width: 150px;
+}
+.periods a {
+	min-width: 50px;
+}
+.red {
+	color: rgb(250,150,50);
+}
+.green {
+	color: rgb(100,200,50);
+}
+.error {
+	padding: 10px;
+	margin: 10px;
+	color: white;
+	background: rgb(250,100,0);
+	border: 1px solid rgb(200,50,0);
+	border-radius: 5px;
+}
